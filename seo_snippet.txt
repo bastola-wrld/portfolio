@@ -1,0 +1,35 @@
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://baburambastola.dev/" />
+    <meta property="og:title" content="Baburam Bastola | AI & Software Engineering Student" />
+    <meta property="og:description" content="Baburam Bastola (Ashwin) is an AI & Software Engineering student in London. Founder of AI Society, builder of AI CodeLens, and Ethical AI advocate." />
+    <meta property="og:image" content="https://baburambastola.dev/profile.jpg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://baburambastola.dev/" />
+    <meta property="twitter:title" content="Baburam Bastola | AI & Software Engineering Student" />
+    <meta property="twitter:description" content="Baburam Bastola (Ashwin) is an AI & Software Engineering student in London. Founder of AI Society, builder of AI CodeLens, and Ethical AI advocate." />
+    <meta property="twitter:image" content="https://baburambastola.dev/profile.jpg" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Baburam Bastola",
+      "alternateName": "Ashwin Bastola",
+      "jobTitle": "AI & Software Engineering Student",
+      "url": "https://baburambastola.dev",
+      "image": "https://baburambastola.dev/profile.jpg",
+      "sameAs": [
+        "https://www.linkedin.com/in/baburam-bastola",
+        "https://github.com/baburam-bastola"
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of Roehampton"
+      },
+      "knowsAbout": ["Artificial Intelligence", "Software Engineering", "Ethical AI", "Machine Learning", "Python", "React"]
+    }
+    </script>
