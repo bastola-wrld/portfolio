@@ -62,7 +62,21 @@ A modern, high-performance personal portfolio website designed for an AI Enginee
 4.  Set the **Publish Directory** to `dist`.
 5.  **Important:** The contact forms are pre-configured with `data-netlify="true"`. They will automatically start working once deployed.
 
-## 📂 Project Structure
+### Docker (Self-Hosted)
+
+If you prefer to run this in a container:
+
+1.  **Build the image:**
+    ```bash
+    docker build -t portfolio .
+    ```
+
+2.  **Run the container:**
+    ```bash
+    docker run -d -p 8080:80 portfolio
+    ```
+    Visit `http://localhost:8080`.
+    *Note: Netlify Forms will not work in a raw Docker container without your own backend.*
 
 ```
 ├── public/
