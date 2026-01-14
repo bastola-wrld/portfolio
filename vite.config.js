@@ -14,6 +14,7 @@ export default {
                 media: resolve(__dirname, 'media.html'),
                 skills: resolve(__dirname, 'skills.html'),
                 contact: resolve(__dirname, 'contact.html'),
+                success: resolve(__dirname, 'success.html'),
             },
         },
     },
