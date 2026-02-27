@@ -78,9 +78,9 @@
 
   <main>
     <!-- HERO SECTION -->
-    <section class="hero" style="position: relative; overflow: hidden;">
+    <section class="hero" style="position: relative; overflow: hidden; z-index: 1;">
       <svg class="anime-shadow-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice"
-        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;">
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;">
         <defs>
           <filter id="shadow-blur" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur in="SourceGraphic" stdDeviation="40" />
@@ -115,7 +115,7 @@
           <circle class="aura-particle" cx="400" cy="250" r="4" />
         </g>
       </svg>
-      <div class="hero-content">
+      <div class="hero-content" style="position: relative; z-index: 2;">
         <h1>Hi, I'm <span class="highlight">Baburam Bastola</span> (Ashwin).</h1>
         <h2 style="font-size: 1.5rem; margin-top: 10px; font-weight: 400;">I am <span
             class="typewriter-text"></span><span class="cursor">&nbsp;</span></h2>
