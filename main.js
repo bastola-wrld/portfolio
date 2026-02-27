@@ -218,8 +218,8 @@ function initAiBackground() {
   animate();
 }
 
-// Contact Form Logic (Formspree)
-const FORMSPREE_URL = "https://formspree.io/f/REPLACE_WITH_YOUR_CODE";
+// Contact Form Logic (Formsubmit.co)
+const FORMS_ENDPOINT = "https://formsubmit.co/ajax/baburambastola716@gmail.com";
 
 function initContactForm(formName) {
   const form = document.querySelector(`form[name="${formName}"]`);
@@ -256,9 +256,9 @@ function initContactForm(formName) {
     } else {
       btn.disabled = false;
       btn.textContent = 'Send Message';
-      
+
       if (state.status === 'success') {
-        msgEl.textContent = "Message sent! I'll get back to you soon.";
+        msgEl.textContent = "Message sent! Important: Since this is the first time, you might need to click an activation link sent to your email by Formsubmit.co.";
         msgEl.style.color = '#10B981'; // Green
       } else if (state.status === 'error') {
         msgEl.textContent = "Something went wrong. Please try again.";
@@ -278,7 +278,7 @@ function initContactForm(formName) {
     render();
 
     try {
-      const response = await fetch(FORMSPREE_URL, {
+      const response = await fetch(FORMS_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -287,7 +287,8 @@ function initContactForm(formName) {
         body: JSON.stringify({
           name: state.name,
           email: state.email,
-          message: state.message
+          message: state.message,
+          _captcha: false
         })
       });
 
