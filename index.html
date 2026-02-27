@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Typed.js for hero typewriter effect -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
 
   <!-- SEO Meta Tags -->
   <title>Baburam Bastola | AI & Software Engineering Student in London</title>
@@ -117,8 +119,9 @@
       </svg>
       <div class="hero-content" style="position: relative; z-index: 2;">
         <h1>Hi, I'm <span class="highlight">Baburam Bastola</span> (Ashwin).</h1>
-        <h2 style="font-size: 1.5rem; margin-top: 10px; font-weight: 400;">I am <span
-            class="typewriter-text"></span><span class="cursor">&nbsp;</span></h2>
+        <h2 style="font-size: 1.5rem; margin-top: 10px; font-weight: 400;">
+          I am <span class="typewriter-text"></span><span class="cursor">&nbsp;</span>
+        </h2>
         <p class="hero-sub">Computer Science Student @ University of Roehampton | AI & Software Engineering</p>
         <div class="cta-group">
           <a href="#projects" class="btn primary">View Work</a>
@@ -257,6 +260,27 @@
   </footer>
 
   <script type="module" src="/main.js"></script>
+
+  <!-- Typed.js initialization for hero section -->
+  <script>
+    var typed = new Typed('.typewriter-text', {
+      strings: [
+        "an AI &amp; Software Engineer.",
+        "a Computer Science Student.",
+        "a System Designer &amp; Architect.",
+        "the Founder of AI Society @ Roehampton.",
+        "a Full-Stack Developer.",
+        "building ethical AI systems.",
+        "open to internships &amp; research.",
+      ],
+      typeSpeed: 55,
+      backSpeed: 35,
+      backDelay: 2000,
+      startDelay: 500,
+      loop: true,
+      showCursor: false,
+    });
+  </script>
 </body>
 
 </html>
