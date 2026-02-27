@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initAiBackground();
   initTypewriter();
+  initContactForm('contact');
+  initContactForm('home-contact');
 });
 
 // Typewriter Effect
@@ -214,4 +216,92 @@ function initAiBackground() {
 
   initParticles();
   animate();
+}
+
+// Contact Form Logic (Formspree)
+const FORMSPREE_URL = "https://formspree.io/f/REPLACE_WITH_YOUR_CODE";
+
+function initContactForm(formName) {
+  const form = document.querySelector(`form[name="${formName}"]`);
+  if (!form) return;
+
+  const btn = form.querySelector('button[type="submit"]');
+  const nameInput = form.querySelector('input[name="name"]');
+  const emailInput = form.querySelector('input[name="email"]');
+  const messageInput = form.querySelector('textarea[name="message"]');
+
+  // State
+  let state = {
+    name: "",
+    email: "",
+    message: "",
+    status: "idle" // "idle" | "sending" | "success" | "error"
+  };
+
+  // Status message element
+  const msgEl = document.createElement('p');
+  msgEl.style.marginTop = '15px';
+  msgEl.style.fontWeight = '500';
+  form.appendChild(msgEl);
+
+  function render() {
+    nameInput.value = state.name;
+    emailInput.value = state.email;
+    messageInput.value = state.message;
+
+    if (state.status === 'sending') {
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      msgEl.textContent = '';
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+      
+      if (state.status === 'success') {
+        msgEl.textContent = "Message sent! I'll get back to you soon.";
+        msgEl.style.color = '#10B981'; // Green
+      } else if (state.status === 'error') {
+        msgEl.textContent = "Something went wrong. Please try again.";
+        msgEl.style.color = '#EF4444'; // Red
+      }
+    }
+  }
+
+  // "Controlled" Event Listeners
+  nameInput.addEventListener('input', (e) => { state.name = e.target.value; render(); });
+  emailInput.addEventListener('input', (e) => { state.email = e.target.value; render(); });
+  messageInput.addEventListener('input', (e) => { state.message = e.target.value; render(); });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    state.status = 'sending';
+    render();
+
+    try {
+      const response = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: state.name,
+          email: state.email,
+          message: state.message
+        })
+      });
+
+      if (response.ok) {
+        state.status = 'success';
+        state.name = '';
+        state.email = '';
+        state.message = '';
+      } else {
+        state.status = 'error';
+      }
+    } catch (err) {
+      state.status = 'error';
+    }
+    render();
+  });
 }

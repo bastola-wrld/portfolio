@@ -50,7 +50,8 @@
                     <li><a href="/media.html">Media</a></li>
                     <li><a href="/skills.html">Skills</a></li>
                     <li><a href="/contact.html" class="active">Contact</a></li>
-                    <li><a href="/resume.pdf" class="nav-btn-cv" target="_blank">Download CV</a></li>
+                    <li><a href="/Baburam_Bastola_CV.pdf" download="Baburam_Bastola_CV.pdf" class="nav-btn-cv"
+                            target="_blank">Download CV</a></li>
                 </ul>
                 <button class="mobile-menu-btn" aria-label="Toggle Navigation">☰</button>
             </nav>
@@ -96,8 +97,7 @@
                     <!-- Contact Form -->
                     <div class="contact-form">
                         <h3>Send a Message</h3>
-                        <form name="contact" method="POST" action="/success.html" data-netlify="true">
-                            <input type="hidden" name="form-name" value="contact" />
+                        <form id="contact-form" name="contact">
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" id="name" name="name" class="form-input" required>

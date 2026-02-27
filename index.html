@@ -68,7 +68,8 @@
           <li><a href="/media.html">Media</a></li>
           <li><a href="/skills.html">Skills</a></li>
           <li><a href="/contact.html">Contact</a></li>
-          <li><a href="/resume.pdf" class="nav-btn-cv" target="_blank">Download CV</a></li>
+          <li><a href="/Baburam_Bastola_CV.pdf" download="Baburam_Bastola_CV.pdf" class="nav-btn-cv"
+              target="_blank">Download CV</a></li>
         </ul>
         <button class="mobile-menu-btn" aria-label="Toggle Navigation">☰</button>
       </nav>
@@ -192,8 +193,7 @@
 
       <div style="max-width: 600px; margin: 0 auto; text-align: left;">
         <div class="glass-card contact-form">
-          <form name="home-contact" method="POST" action="/success.html" data-netlify="true">
-            <input type="hidden" name="form-name" value="home-contact" />
+          <form id="home-contact-form" name="home-contact">
             <div class="form-group">
               <label for="home-name">Name</label>
               <input type="text" id="home-name" name="name" class="form-input" required>
