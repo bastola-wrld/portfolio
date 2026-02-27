@@ -1,3 +1,5 @@
+import { animate, stagger } from 'animejs';
+
 document.addEventListener('DOMContentLoaded', () => {
   // Dynamic Year in Footer
   const yearSpan = document.getElementById('year');
@@ -45,7 +47,70 @@ document.addEventListener('DOMContentLoaded', () => {
   initTypewriter();
   initContactForm('contact');
   initContactForm('home-contact');
+  initAnimeBackground();
 });
+
+// AnimeJS Hero Animated SVG Background
+function initAnimeBackground() {
+  const shadowSvg = document.querySelector('.anime-shadow-svg');
+  if (!shadowSvg) return;
+
+  // Breathing effect on the shadow shapes
+  animate('.shadow-head, .shadow-body', {
+    scale: [
+      { to: 1.04, ease: 'inOutSine', duration: 2000 },
+      { to: 1, ease: 'inOutSine', duration: 2000 }
+    ],
+    opacity: [
+      { to: 0.28, ease: 'inOutSine', duration: 2000 },
+      { to: 0.15, ease: 'inOutSine', duration: 2000 }
+    ],
+    loop: true,
+    alternate: true,
+    delay: stagger(400)
+  });
+
+  // Slow floating drift
+  animate('.shadow-body', {
+    translateY: [
+      { to: -12, ease: 'inOutQuad', duration: 3500 },
+      { to: 0, ease: 'inOutQuad', duration: 3500 }
+    ],
+    loop: true,
+    alternate: true
+  });
+
+  // Particle Aura
+  animate('.aura-particle', {
+    translateX: () => (Math.random() - 0.5) * 80,
+    translateY: () => (Math.random() - 0.5) * 80,
+    opacity: [
+      { to: 0.6, duration: 1500 },
+      { to: 0, duration: 1500 }
+    ],
+    scale: [
+      { to: 1.5, duration: 1500 },
+      { to: 0.5, duration: 1500 }
+    ],
+    loop: true,
+    alternate: true,
+    delay: stagger(150, { from: 'center' }),
+    ease: 'inOutSine'
+  });
+
+  // Mouse Parallax Effect
+  document.addEventListener('mousemove', (e) => {
+    const xOffset = (e.clientX / window.innerWidth - 0.5) * 30;
+    const yOffset = (e.clientY / window.innerHeight - 0.5) * 20;
+
+    animate('.shadow-group', {
+      translateX: xOffset,
+      translateY: yOffset,
+      duration: 1200,
+      ease: 'outExpo'
+    });
+  });
+}
 
 // Typewriter Effect
 function initTypewriter() {
