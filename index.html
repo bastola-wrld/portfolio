@@ -7,6 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Typed.js for hero typewriter effect -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+  <!-- JetBrains Mono terminal-style font -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* typewriter text styling */
+    #typewriter-text { font-weight: 600; background: linear-gradient(90deg, #00ff88, #00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 12px rgba(0,255,136,0.4)); transition: filter 0.3s; }
+    .typed-cursor { color: #00ff88; text-shadow: 0 0 10px #00ff88; animation: cursorBlink 0.75s step-end infinite; }
+    @keyframes cursorBlink { 0%,100%{opacity:1} 50%{opacity:0} }
+  </style>
 
   <!-- SEO Meta Tags -->
   <title>Baburam Bastola | AI & Software Engineering Student in London</title>
@@ -120,7 +128,7 @@
       <div class="hero-content" style="position: relative; z-index: 2;">
         <h1>Hi, I'm <span class="highlight">Baburam Bastola</span> (Ashwin).</h1>
         <h2 style="font-size: 1.5rem; margin-top: 10px; font-weight: 400;">
-          I am <span class="typewriter-text"></span><span class="cursor">&nbsp;</span>
+          I am <span id="typewriter-text" class="typewriter-text"></span><span class="cursor">&nbsp;</span>
         </h2>
         <p class="hero-sub">Computer Science Student @ University of Roehampton | AI & Software Engineering</p>
         <div class="cta-group">
@@ -263,22 +271,15 @@
 
   <!-- Typed.js initialization for hero section -->
   <script>
-    var typed = new Typed('.typewriter-text', {
-      strings: [
-        "an AI &amp; Software Engineer.",
-        "a Computer Science Student.",
-        "a System Designer &amp; Architect.",
-        "the Founder of AI Society @ Roehampton.",
-        "a Full-Stack Developer.",
-        "building ethical AI systems.",
-        "open to internships &amp; research.",
-      ],
-      typeSpeed: 55,
-      backSpeed: 35,
-      backDelay: 2000,
-      startDelay: 500,
-      loop: true,
-      showCursor: false,
+    var typed = new Typed('#typewriter-text', {
+      strings: ["an AI &amp; Software Engineer.","a Computer Science Student.","a System Designer &amp; Architect.","a Machine Learning Engineer.","the Founder of AI Society.","a Full-Stack Developer.","building ethical AI.","open to internships &amp; research."],
+      typeSpeed: 42, backSpeed: 28, backDelay: 1800, startDelay: 1800,
+      loop: true, showCursor: true, cursorChar: '█', smartBackspace: true,
+      onStringTyped: function() {
+        var el = document.getElementById('typewriter-text');
+        el.style.filter = 'drop-shadow(0 0 22px rgba(0,255,136,0.8))';
+        setTimeout(function(){ el.style.filter = 'drop-shadow(0 0 12px rgba(0,255,136,0.4))'; }, 400);
+      }
     });
   </script>
 </body>
