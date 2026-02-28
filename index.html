@@ -356,7 +356,136 @@
       color: var(--cyan);
     }
 
+    
+    /* New Hero Text Layout Additions */
     .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.9s;
+    }
+
+    .hero-name .comment {
+      color: var(--muted);
+      font-size: 0.4em;
+      font-family: 'JetBrains Mono';
+      font-weight: 400;
+      display: block;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-name .bracket {
+      color: var(--green);
+      font-weight: 800;
+    }
+    
+    .iam-line {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      margin-bottom: 2.5rem;
+      min-height: 2.2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 1.2s;
+    }
+    .iam-prefix {
+      color: var(--muted);
+      font-weight: 300;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 1.5s;
+    }
+    
+    .badge {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      padding: 0.5rem 1rem;
+      text-transform: uppercase;
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      background: rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+    }
+    
+    .badge.green-fill {
+      color: var(--green);
+      border: 1px solid rgba(0, 255, 136, 0.4);
+    }
+    .badge.cyan-fill {
+      color: var(--cyan);
+      border: 1px solid rgba(0, 212, 255, 0.4);
+    }
+    .badge.purple-fill {
+      color: #a78bfa;
+      border: 1px solid rgba(139, 92, 246, 0.4);
+    }
+    
+    .btn-primary {
+      background: var(--green);
+      color: #060810;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      box-shadow: 0 0 24px rgba(0, 255, 136, 0.4);
+      border: 1px solid var(--green);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 36px rgba(0, 255, 136, 0.6);
+      transform: translateY(-2px);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: var(--cyan);
+      font-family: 'JetBrains Mono', monospace;
+      border: 1px solid rgba(0, 212, 255, 0.5);
+    }
+    .btn-outline:hover {
+      background: rgba(0, 212, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    #ai-portrait-wrap {
+      position: absolute;
+      top: 50%; right: 5%;
+      transform: translateY(-50%);
+      width: 400px; height: 480px;
+      z-index: 2;
+      pointer-events: none;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(-50%) translatey(0px); }
+      50% { transform: translateY(-50%) translatey(-15px); }
+      100% { transform: translateY(-50%) translatey(0px); }
+    }
+    @media (max-width: 900px) {
+      #ai-portrait-wrap {
+        opacity: 0.15;
+        z-index: 0;
+      }
+    }
+
+
+    /* Old hero-name removed */
+    .hero-name-old {
       font-family: 'Syne', sans-serif;
       font-size: clamp(2.8rem, 7vw, 5.5rem);
       font-weight: 800;
@@ -632,6 +761,7 @@
     <button class="nav-mobile-btn" onclick="document.querySelector('.nav-links').style.display='flex'">☰</button>
   </nav>
 
+  
   <!-- HERO -->
   <section id="hero">
     <div id="ai-portrait-wrap">
@@ -646,45 +776,46 @@
       <div class="p-corner c-br"></div>
       <div class="glow-border"></div>
       <div class="gnd"></div>
-      <div class="top-tag">MODEL: BB-AI-01</div>
-      <div class="readout">STATUS: <span>ONLINE</span><br>SYSTEM: <span>OPTIMAL</span></div>
+      <div class="top-tag" style="top: -25px; left: 0; color: var(--muted); font-size: 0.6rem; letter-spacing: 0.1em; opacity: 0.7;">[ ID: PERSON_01 | STAT: ACTIVE ]</div>
+      <div class="readout" style="bottom: 15px; left: 15px; top: auto; right: auto;">ID: baburam.bastola<br>ROLE: ai_engineer<br>STAT: ACTIVE</div>
     </div>
 
     <div class="hero-glow"></div>
 
-    <div class="hero-content">
+    <div class="hero-content" style="position: relative; z-index: 10;">
       <div class="terminal-bar">
         <div class="dot r"></div>
         <div class="dot y"></div>
         <div class="dot g"></div>
-        <span class="terminal-title">bash - login</span>
+        <span class="terminal-title">portfolio.exe - baburam@dev: ~ zsh</span>
       </div>
       <div class="prompt-line">
-        <span class="user">bastola@ai-sys</span>:<span class="dir">~/portfolio</span>$ ./init.sh
+        <span class="user" style="color: var(--green); font-weight: 500;">baburam@roehampton</span> <span class="dir" style="color: var(--muted);">~/portfolio $</span> <span style="color: #e2e8f0; font-weight: 600;">./introduce.sh</span>
       </div>
       <h1 class="hero-name">
-        <span class="comment">// Hello World</span>
-        Baburam <br>
-        <span class="bracket">{</span> Bastola <span class="bracket">}</span>
+        <span class="comment">// Hi, I'm</span>
+        <span class="bracket">&lt;</span>Baburam Bastola<span class="bracket">/&gt;</span>
       </h1>
       <div class="iam-line">
-        <span class="iam-prefix">&gt;</span>
+        <span class="iam-prefix">I am</span>
         <span id="typewriter-text"></span>
         <span class="typed-cursor">_</span>
       </div>
 
       <div class="badges">
-        <div class="badge g"><span class="dot-live"></span>Available for Hire</div>
-        <div class="badge c">AI & Software Engineer</div>
-        <div class="badge p">London, UK</div>
+        <div class="badge green-fill"><span class="dot-live"></span>AVAILABLE FOR HIRE</div>
+        <div class="badge cyan-fill">AI SOCIETY FOUNDER</div>
+        <div class="badge purple-fill">@ ROEHAMPTON</div>
+        <div class="badge green-fill">LONDON, UK</div>
       </div>
 
       <div class="cta-group">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-outline">Initialize Contact</a>
+        <a href="#projects" class="btn btn-primary"><span style="font-size: 0.9em; margin-right: 4px;">▶</span> VIEW WORK</a>
+        <a href="#contact" class="btn btn-outline"><span style="font-size: 1.1em; line-height: 1; margin-right: 4px;">→</span> CONTACT ME</a>
       </div>
     </div>
   </section>
+
 
   <!-- ABOUT -->
   <section id="about">
