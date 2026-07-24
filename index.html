@@ -6,818 +6,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Baburam Bastola | AI & Software Engineer</title>
   <link
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
     rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-  <style>
-    /* ═══════════════════════════════════════════
-   ROOT & RESET
-═══════════════════════════════════════════ */
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg: #060810;
-      --surface: #0d1117;
-      --border: rgba(0, 255, 136, 0.12);
-      --green: #00ff88;
-      --cyan: #00d4ff;
-      --purple: #8b5cf6;
-      --red: #ff5f56;
-      --yellow: #ffbd2e;
-      --text: #e2e8f0;
-      --muted: #4a5568;
-      --dim: #2d3748;
-      --glow-g: rgba(0, 255, 136, 0.15);
-      --glow-c: rgba(0, 212, 255, 0.15);
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'JetBrains Mono', monospace;
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    /* Custom cursor */
-    .cursor-dot {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      background: var(--green);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 12px var(--green);
-      transition: transform 0.1s, background 0.2s;
-    }
-
-    .cursor-ring {
-      position: fixed;
-      width: 32px;
-      height: 32px;
-      border: 1px solid rgba(0, 255, 136, 0.5);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      transition: all 0.15s ease;
-    }
-
-    /* ═══════════════════════════════════════════
-   GLOBAL GRID BACKGROUND
-═══════════════════════════════════════════ */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0, 255, 136, 0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 136, 0.025) 1px, transparent 1px);
-      background-size: 44px 44px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Corner brackets */
-    .corner {
-      position: fixed;
-      width: 55px;
-      height: 55px;
-      opacity: 0.3;
-      z-index: 5;
-      pointer-events: none;
-    }
-
-    .corner.tl {
-      top: 20px;
-      left: 20px;
-      border-top: 1px solid var(--green);
-      border-left: 1px solid var(--green);
-    }
-
-    .corner.tr {
-      top: 20px;
-      right: 20px;
-      border-top: 1px solid var(--cyan);
-      border-right: 1px solid var(--cyan);
-    }
-
-    .corner.bl {
-      bottom: 20px;
-      left: 20px;
-      border-bottom: 1px solid var(--green);
-      border-left: 1px solid var(--green);
-    }
-
-    .corner.br {
-      bottom: 20px;
-      right: 20px;
-      border-bottom: 1px solid var(--cyan);
-      border-right: 1px solid var(--cyan);
-    }
-
-    /* Scanline */
-    .scanline {
-      position: fixed;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.12), rgba(0, 212, 255, 0.1), transparent);
-      animation: scanMove 8s linear infinite;
-      pointer-events: none;
-      z-index: 4;
-    }
-
-    @keyframes scanMove {
-      0% {
-        top: -2px;
-        opacity: 0;
-      }
-
-      3% {
-        opacity: 1;
-      }
-
-      97% {
-        opacity: 1;
-      }
-
-      100% {
-        top: 100vh;
-        opacity: 0;
-      }
-    }
-
-    /* ═══════════════════════════════════════════
-   NAVIGATION
-═══════════════════════════════════════════ */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2.5rem;
-      height: 64px;
-      background: rgba(6, 8, 16, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-logo {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--green);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-      text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-    }
-
-    .nav-logo span {
-      color: var(--text);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      text-transform: uppercase;
-      transition: color 0.2s;
-      position: relative;
-    }
-
-    .nav-links a::before {
-      content: '// ';
-      color: var(--green);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-    }
-
-    .nav-links a:hover::before {
-      opacity: 1;
-    }
-
-    .nav-cv {
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--green);
-      border: 1px solid rgba(0, 255, 136, 0.4);
-      padding: 0.4rem 1rem;
-      transition: all 0.25s;
-    }
-
-    .nav-cv:hover {
-      background: rgba(0, 255, 136, 0.1);
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
-    }
-
-    .nav-mobile-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--green);
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-
-    /* ═══════════════════════════════════════════
-   HERO SECTION
-═══════════════════════════════════════════ */
-    #hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 100px 2.5rem 4rem;
-      overflow: hidden;
-    }
-
-    /* ── SHADOW CANVAS ── */
-    #shadow-canvas {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 55%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.9;
-    }
-
-    /* Radial fade on right side */
-    #shadow-canvas::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, var(--bg) 0%, transparent 30%, transparent 70%, var(--bg) 100%);
-    }
-
-    .hero-glow {
-      position: absolute;
-      right: 15%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 500px;
-      height: 600px;
-      background: radial-gradient(ellipse, rgba(0, 255, 136, 0.05) 0%, rgba(0, 212, 255, 0.03) 40%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ── HERO CONTENT ── */
-    .hero-content {
-      position: relative;
-      z-index: 10;
-      max-width: 680px;
-    }
-
-    .terminal-bar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 2.2rem;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.3s;
-    }
-
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .dot.r {
-      background: var(--red);
-      box-shadow: 0 0 8px var(--red);
-    }
-
-    .dot.y {
-      background: var(--yellow);
-      box-shadow: 0 0 8px var(--yellow);
-    }
-
-    .dot.g {
-      background: #27c93f;
-      box-shadow: 0 0 8px #27c93f;
-    }
-
-    .terminal-title {
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      margin-left: 10px;
-    }
-
-    .prompt-line {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.6s;
-    }
-
-    .prompt-line .user {
-      color: var(--green);
-    }
-
-    .prompt-line .dir {
-      color: var(--cyan);
-    }
-
-    
-    /* New Hero Text Layout Additions */
-    .hero-name {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2rem, 5vw, 4rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-      opacity: 0;
-      animation: fadeUp 0.7s ease forwards 0.9s;
-    }
-
-    .hero-name .comment {
-      color: var(--muted);
-      font-size: 0.4em;
-      font-family: 'JetBrains Mono';
-      font-weight: 400;
-      display: block;
-      margin-bottom: 0.8rem;
-      letter-spacing: 0.05em;
-    }
-
-    .hero-name .bracket {
-      color: var(--green);
-      font-weight: 800;
-    }
-    
-    .iam-line {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      font-size: clamp(1rem, 2vw, 1.3rem);
-      margin-bottom: 2.5rem;
-      min-height: 2.2rem;
-      opacity: 0;
-      animation: fadeUp 0.7s ease forwards 1.2s;
-    }
-    .iam-prefix {
-      color: var(--muted);
-      font-weight: 300;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-bottom: 2.5rem;
-      opacity: 0;
-      animation: fadeUp 0.7s ease forwards 1.5s;
-    }
-    
-    .badge {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      padding: 0.5rem 1rem;
-      text-transform: uppercase;
-      border-radius: 4px;
-      position: relative;
-      overflow: hidden;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 600;
-      background: rgba(0,0,0,0.3);
-      display: flex;
-      align-items: center;
-    }
-    
-    .badge.green-fill {
-      color: var(--green);
-      border: 1px solid rgba(0, 255, 136, 0.4);
-    }
-    .badge.cyan-fill {
-      color: var(--cyan);
-      border: 1px solid rgba(0, 212, 255, 0.4);
-    }
-    .badge.purple-fill {
-      color: #a78bfa;
-      border: 1px solid rgba(139, 92, 246, 0.4);
-    }
-    
-    .btn-primary {
-      background: var(--green);
-      color: #060810;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 800;
-      box-shadow: 0 0 24px rgba(0, 255, 136, 0.4);
-      border: 1px solid var(--green);
-    }
-    .btn-primary:hover {
-      box-shadow: 0 0 36px rgba(0, 255, 136, 0.6);
-      transform: translateY(-2px);
-    }
-    
-    .btn-outline {
-      background: transparent;
-      color: var(--cyan);
-      font-family: 'JetBrains Mono', monospace;
-      border: 1px solid rgba(0, 212, 255, 0.5);
-    }
-    .btn-outline:hover {
-      background: rgba(0, 212, 255, 0.1);
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-      transform: translateY(-2px);
-    }
-    
-    #ai-portrait-wrap {
-      position: absolute;
-      top: 50%; right: 5%;
-      transform: translateY(-50%);
-      width: 400px; height: 480px;
-      z-index: 2;
-      pointer-events: none;
-      animation: float 6s ease-in-out infinite;
-    }
-    @keyframes float {
-      0% { transform: translateY(-50%) translatey(0px); }
-      50% { transform: translateY(-50%) translatey(-15px); }
-      100% { transform: translateY(-50%) translatey(0px); }
-    }
-    @media (max-width: 900px) {
-      #ai-portrait-wrap {
-        opacity: 0.15;
-        z-index: 0;
-      }
-    }
-
-
-    /* Old hero-name removed */
-    .hero-name-old {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -0.03em;
-      margin-bottom: 0.5rem;
-      opacity: 0;
-      animation: fadeUp 0.7s ease forwards 0.9s;
-    }
-
-    .hero-name .comment {
-      color: var(--muted);
-      font-size: 0.35em;
-      font-family: 'JetBrains Mono';
-      font-weight: 400;
-      display: block;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.05em;
-    }
-
-    .hero-name .bracket {
-      color: var(--green);
-    }
-
-    .iam-line {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: clamp(1rem, 2.2vw, 1.4rem);
-      margin-bottom: 2rem;
-      min-height: 2.2rem;
-      opacity: 0;
-      animation: fadeUp 0.7s ease forwards 1.2s;
-    }
-
-    .iam-prefix {
-      color: var(--muted);
-      font-weight: 300;
-    }
-
-    #typewriter-text {
-      font-weight: 600;
-      background: linear-gradient(90deg, var(--green), var(--cyan));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.5));
-      transition: filter 0.3s;
-    }
-
-    .typed-cursor {
-      color: var(--green) !important;
-      -webkit-text-fill-color: var(--green) !important;
-      text-shadow: 0 0 10px var(--green);
-      animation: cursorBlink 0.75s step-end infinite;
-    }
-
-    @keyframes cursorBlink {
-
-      0%,
-      100% {
-        opacity: 1
-      }
-
-      50% {
-        opacity: 0
-      }
-    }
-
-    .badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-bottom: 2.2rem;
-      opacity: 0;
-      animation: fadeUp 0.7s ease forwards 1.5s;
-    }
-
-    .badge {
-      font-size: 0.65rem;
-      letter-spacing: 0.14em;
-      padding: 0.32rem 0.8rem;
-      text-transform: uppercase;
-      border-radius: 3px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .badge::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: currentColor;
-      opacity: 0.08;
-    }
-
-    .badge.g {
-      color: var(--green);
-      border: 1px solid rgba(0, 255, 136, 0.3);
-    }
-
-    .badge.c {
-      color: var(--cyan);
-      border: 1px solid rgba(0, 212, 255, 0.3);
-    }
-
-    .badge.p {
-      color: #a78bfa;
-      border: 1px solid rgba(139, 92, 246, 0.3);
-    }
-
-    .dot-live {
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: currentColor;
-      margin-right: 6px;
-      animation: pulseDot 1.5s ease infinite;
-      vertical-align: middle;
-    }
-
-    @keyframes pulseDot {
-
-      0%,
-      100% {
-        opacity: 1;
-        transform: scale(1)
-      }
-
-      50% {
-        opacity: 0.3;
-        transform: scale(0.6)
-      }
-    }
-
-    .cta-group {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.7s ease forwards 1.8s;
-    }
-
-    .btn {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 0.75rem 1.6rem;
-      border: none;
-      cursor: pointer;
-      transition: all 0.25s;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .btn-primary {
-      background: var(--green);
-      color: #060810;
-      font-weight: 700;
-      box-shadow: 0 0 24px rgba(0, 255, 136, 0.3);
-    }
-
-    .btn-primary:hover {
-      box-shadow: 0 0 36px rgba(0, 255, 136, 0.55);
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--cyan);
-      border: 1px solid rgba(0, 212, 255, 0.35);
-    }
-
-    .btn-outline:hover {
-      background: rgba(0, 212, 255, 0.08);
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
-      transform: translateY(-2px);
-    }
-
-    /* ═══════════════════════════════════════════
-   SECTION COMMONS
-═══════════════════════════════════════════ */
-    section {
-      position: relative;
-      z-index: 2;
-      padding: 6rem 2.5rem;
-    }
-
-    section:nth-child(even) {
-      background: rgba(13, 17, 23, 0.6);
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-      margin-bottom: 3.5rem;
-    }
-
-    .section-num {
-      font-size: 0.7rem;
-      color: var(--green);
-      letter-spacing: 0.15em;
-      white-space: nowrap;
-    }
-
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: -0.02em;
-    }
-
-    .section-line {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, var(--border), transparent);
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Remaining CSS and HTML omitted for brevity in this response but included in the full file */
-  </style>
+  <link rel="stylesheet" href="/src/style.css" />
 </head>
 
 <body>
 
-  <!-- Animated background canvas -->
-  <canvas id="bg-canvas"></canvas>
-
-  <!-- Cursor -->
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
-  <!-- Corners & Scanline -->
-  <div class="corner tl"></div>
-  <div class="corner tr"></div>
-  <div class="corner bl"></div>
-  <div class="corner br"></div>
-  <div class="scanline"></div>
-
   <!-- NAVIGATION -->
   <nav>
-    <a href="#hero" class="nav-logo">&lt;<span>BB</span>/&gt;</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
+    <a href="/" class="nav-logo" aria-label="Baburam Bastola Home">&lt;<span>BB</span>/&gt;</a>
+    <ul class="nav-links" role="navigation" aria-label="Main Navigation">
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/experience.html">Experience</a></li>
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/skills.html">Skills</a></li>
+      <li><a href="/contact.html">Contact</a></li>
     </ul>
     <a href="/Baburam_Bastola_CV.pdf" download class="nav-cv">↓ Download CV</a>
-    <button class="nav-mobile-btn" onclick="document.querySelector('.nav-links').style.display='flex'">☰</button>
+    <button class="nav-mobile-btn" aria-expanded="false" aria-label="Toggle menu">☰</button>
   </nav>
 
-  
   <!-- HERO -->
   <section id="hero">
-    <div id="ai-portrait-wrap">
-      <div class="ambient"></div>
-      <img class="photo" src="/profile.jpg" alt="Profile">
-      <div class="scan"></div>
-      <div class="glitch"></div>
-      <div class="gl"></div>
-      <div class="p-corner c-tl"></div>
-      <div class="p-corner c-tr"></div>
-      <div class="p-corner c-bl"></div>
-      <div class="p-corner c-br"></div>
-      <div class="glow-border"></div>
-      <div class="gnd"></div>
-      <div class="top-tag" style="top: -25px; left: 0; color: var(--muted); font-size: 0.6rem; letter-spacing: 0.1em; opacity: 0.7;">[ ID: PERSON_01 | STAT: ACTIVE ]</div>
-      <div class="readout" style="bottom: 15px; left: 15px; top: auto; right: auto;">ID: baburam.bastola<br>ROLE: ai_engineer<br>STAT: ACTIVE</div>
-    </div>
-
-    <div class="hero-glow"></div>
-
-    <div class="hero-content" style="position: relative; z-index: 10;">
-      <div class="terminal-bar">
-        <div class="dot r"></div>
-        <div class="dot y"></div>
-        <div class="dot g"></div>
-        <span class="terminal-title">portfolio.exe - baburam@dev: ~ zsh</span>
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="hero-location">
+          <span class="loc-icon">📍</span> London, UK
+        </div>
+        <h1 class="hero-name">Baburam Bastola</h1>
+        <p class="hero-role">AI & Software Engineer</p>
+        <p class="hero-tagline">
+          Building next-generation intelligent platforms and scalable full-stack applications with an ethical AI focus.
+        </p>
+        <div class="cta-group">
+          <a href="/projects.html" class="btn btn-primary">View Projects</a>
+          <a href="/contact.html" class="btn btn-outline">Contact</a>
+        </div>
       </div>
-      <div class="prompt-line">
-        <span class="user" style="color: var(--green); font-weight: 500;">baburam@roehampton</span> <span class="dir" style="color: var(--muted);">~/portfolio $</span> <span style="color: #e2e8f0; font-weight: 600;">./introduce.sh</span>
-      </div>
-      <h1 class="hero-name">
-        <span class="comment">// Hi, I'm</span>
-        <span class="bracket">&lt;</span>Baburam Bastola<span class="bracket">/&gt;</span>
-      </h1>
-      <div class="iam-line">
-        <span class="iam-prefix">I am</span>
-        <span id="typewriter-text"></span>
-        <span class="typed-cursor">_</span>
-      </div>
-
-      <div class="badges">
-        <div class="badge green-fill"><span class="dot-live"></span>AVAILABLE FOR HIRE</div>
-        <div class="badge cyan-fill">AI SOCIETY FOUNDER</div>
-        <div class="badge purple-fill">@ ROEHAMPTON</div>
-        <div class="badge green-fill">LONDON, UK</div>
-      </div>
-
-      <div class="cta-group">
-        <a href="#projects" class="btn btn-primary"><span style="font-size: 0.9em; margin-right: 4px;">▶</span> VIEW WORK</a>
-        <a href="#contact" class="btn btn-outline"><span style="font-size: 1.1em; line-height: 1; margin-right: 4px;">→</span> CONTACT ME</a>
+      <div class="hero-media">
+        <div class="hero-image-wrapper">
+          <img class="hero-image" src="/profile.jpg" alt="Baburam Bastola" />
+        </div>
       </div>
     </div>
   </section>
 
-
-  <!-- ABOUT -->
+  <!-- ABOUT TEASER -->
   <section id="about">
     <div class="container reveal">
       <div class="section-header">
@@ -827,11 +62,12 @@
       </div>
       <div class="about-grid">
         <div class="about-text">
-          <p>I am an ambitious <strong>Computer Science student</strong> specializing in <span class="cyan">Artificial
-              Intelligence</span> and <span class="cyan">Software Engineering</span>. As the founder of my university's
-            AI Society, I bridge the gap between complex algorithms and real-world impact.</p>
-          <p>My mission is to build scalable, ethical AI systems that solve genuine problems while continually pushing
-            the boundaries of what's possible in tech.</p>
+          <p>
+            I am an ambitious <strong>Computer Science student</strong> at the <strong>University of Roehampton</strong>, specializing in AI and Software Engineering. As the founder of the university's AI and Computing Society and an AWS Certified Cloud Practitioner, I design and build secure, cloud-native intelligent systems with an emphasis on ethical alignment.
+          </p>
+          <div style="margin-top: var(--space-md);">
+            <a href="/about.html" class="btn btn-outline">Read More About Me →</a>
+          </div>
         </div>
         <div class="code-block">
           <div class="code-block-header">
@@ -843,10 +79,8 @@
           <div class="code-body">
             <span class="code-kw">const</span> <span class="code-var">developer</span> = {<br>
             &nbsp;&nbsp;name: <span class="code-str">"Baburam Bastola"</span>,<br>
-            &nbsp;&nbsp;role: <span class="code-str">"AI & Software Engineer"</span>,<br>
-            &nbsp;&nbsp;location: <span class="code-str">"London, UK"</span>,<br>
-            &nbsp;&nbsp;interests: [<span class="code-str">"Machine Learning"</span>, <span
-              class="code-str">"Full-stack"</span>, <span class="code-str">"Ethical AI"</span>]<br>
+            &nbsp;&nbsp;education: <span class="code-str">"BSc Computer Science @ Roehampton"</span>,<br>
+            &nbsp;&nbsp;specialization: <span class="code-str">"AI & Software Engineering"</span><br>
             };
           </div>
         </div>
@@ -854,52 +88,11 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="container reveal">
-      <div class="section-header">
-        <span class="section-num">02.</span>
-        <h2 class="section-title">Experience</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="exp-list">
-        <div class="exp-card">
-          <div class="exp-meta">
-            <div class="exp-role">Founding President</div>
-            <div class="exp-date">2023 - Present</div>
-          </div>
-          <div class="exp-org">AI & Computing Society | University of Roehampton</div>
-          <div class="exp-desc">Founded and scaled the university's AI society, delivering workshops on ML and
-            championing ethical AI practices.</div>
-          <div class="exp-tags">
-            <span class="tag">Leadership</span>
-            <span class="tag">Machine Learning</span>
-            <span class="tag">Public Speaking</span>
-          </div>
-        </div>
-        <div class="exp-card">
-          <div class="exp-meta">
-            <div class="exp-role">Computer Operator</div>
-            <div class="exp-date">Previous</div>
-          </div>
-          <div class="exp-org">Vibrant International</div>
-          <div class="exp-desc">Managed IT systems, databases, and data protection protocols, ensuring optimal
-            performance and security.</div>
-          <div class="exp-tags">
-            <span class="tag">IT Systems</span>
-            <span class="tag">Databases</span>
-            <span class="tag">Security</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
+  <!-- FEATURED PROJECTS -->
   <section id="projects">
     <div class="container reveal">
       <div class="section-header">
-        <span class="section-num">03.</span>
+        <span class="section-num">02.</span>
         <h2 class="section-title">Featured Projects</h2>
         <div class="section-line"></div>
       </div>
@@ -907,8 +100,9 @@
         <div class="project-card">
           <div class="project-num">P_01</div>
           <div class="project-name">AI CodeLens</div>
-          <div class="project-desc">An intelligent platform that audits code for security, quality, and performance in
-            real-time. Built with a modern full-stack architecture.</div>
+          <div class="project-desc">
+            An intelligent developer platform that audits source code for security vulnerabilities, code smells, and performance bottlenecks in real-time. Built with React, TypeScript, OpenAI API, and Supabase.
+          </div>
           <div class="project-stack">
             <span class="stack-item">React</span>
             <span class="stack-item">TypeScript</span>
@@ -921,152 +115,30 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="container reveal">
-      <div class="section-header">
-        <span class="section-num">04.</span>
-        <h2 class="section-title">Tech Stack</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-group">
-          <div class="skill-group-title">Languages & Core</div>
-          <div class="skill-item">
-            <span class="skill-name">Python</span>
-            <div class="skill-bar-wrap">
-              <div class="skill-bar" style="width: 90%;"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">TypeScript / JS</span>
-            <div class="skill-bar-wrap">
-              <div class="skill-bar" style="width: 85%;"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">HTML / CSS</span>
-            <div class="skill-bar-wrap">
-              <div class="skill-bar" style="width: 95%;"></div>
-            </div>
-          </div>
-        </div>
-        <div class="skill-group">
-          <div class="skill-group-title">Frameworks & Tools</div>
-          <div class="skill-item">
-            <span class="skill-name">React / Next.js</span>
-            <div class="skill-bar-wrap">
-              <div class="skill-bar" style="width: 80%;"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">Machine Learning</span>
-            <div class="skill-bar-wrap">
-              <div class="skill-bar" style="width: 75%;"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <span class="skill-name">Supabase / Firebase</span>
-            <div class="skill-bar-wrap">
-              <div class="skill-bar" style="width: 85%;"></div>
-            </div>
-          </div>
-        </div>
+      <div style="text-align: center; margin-top: var(--space-lg);">
+        <a href="/projects.html" class="btn btn-outline">View All Projects →</a>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="container reveal">
-      <div class="section-header">
-        <span class="section-num">05.</span>
-        <h2 class="section-title">Initialize Contact</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="contact-grid">
-        <div class="contact-info">
-          <p>I am currently open for internships, research opportunities, and freelance work. Whether you have a
-            question or just want to say hi, I will try my best to get back to you!</p>
-          <div class="contact-links">
-            <a href="mailto:baburambastola716@gmail.com" class="contact-link">
-              <span class="contact-link-icon">✉</span> baburambastola716@gmail.com
-            </a>
-            <a href="https://github.com/bastola-wrld" target="_blank" class="contact-link">
-              <span class="contact-link-icon">G</span> GitHub Profile
-            </a>
-            <a href="https://www.linkedin.com/in/baburam-bastola-6082b2391/" target="_blank" class="contact-link">
-              <span class="contact-link-icon">in</span> LinkedIn Profile
-            </a>
-          </div>
-        </div>
-        <div class="contact-form-wrap">
-          <form class="contact-form" id="main-contact-form" name="home-contact">
-            <div class="form-field">
-              <label class="form-label" for="name">Name <span>*</span></label>
-              <input class="form-input" type="text" id="name" name="name" required placeholder="Enter your name">
-            </div>
-            <div class="form-field">
-              <label class="form-label" for="email">Email <span>*</span></label>
-              <input class="form-input" type="email" id="email" name="email" required placeholder="Enter your email">
-            </div>
-            <div class="form-field">
-              <label class="form-label" for="message">Message <span>*</span></label>
-              <textarea class="form-textarea" id="message" name="message" required
-                placeholder="Enter your message"></textarea>
-            </div>
-            <button class="form-submit" type="submit">Deploy Message</button>
-            <div id="form-status" class="form-status"></div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
+  <!-- FOOTER -->
   <footer>
     <div class="footer-left">
       &lt;<span>BB</span>/&gt; Built by Baburam Bastola.
     </div>
+    <div class="footer-links">
+      <a href="/about.html">About</a>
+      <a href="/experience.html">Experience</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/skills.html">Skills</a>
+      <a href="/contact.html">Contact</a>
+    </div>
     <div class="footer-right">
-      &copy; <span id="year"></span> All rights reserved.
+      &copy; <span id="year">2026</span> All rights reserved.
     </div>
   </footer>
 
   <script type="module" src="/main.js"></script>
-
-  <!-- Typed.js initialization -->
-  <script>
-    if (typeof Typed !== 'undefined') {
-      var typed = new Typed('#typewriter-text', {
-        strings: ["an AI & Software Engineer.", "a Computer Science Student.", "the Founder of AI Society.", "a Tech Enthusiast."],
-        typeSpeed: 42, backSpeed: 28, backDelay: 1800, startDelay: 500,
-        loop: true, showCursor: false
-      });
-    }
-
-    // Scroll Reveal Logic
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1
-    };
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.reveal').forEach(section => {
-      observer.observe(section);
-    });
-  </script>
-
 </body>
 
 </html>

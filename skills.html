@@ -1,129 +1,202 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Skills | Artificial Intelligence, Machine Learning & Software Engineering</title>
-    <meta name="description"
-        content="Technical skills of Baburam Bastola including Python, machine learning, full-stack development, AI systems, cybersecurity fundamentals, and responsible AI practices." />
-    <meta name="keywords"
-        content="Machine learning skills, Python developer, Responsible AI, Software engineering skills" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://baburambastola.dev/skills" />
-    <meta property="og:title" content="Skills | Artificial Intelligence, Machine Learning & Software Engineering" />
-    <meta property="og:description"
-        content="Technical skills of Baburam Bastola: Python, ML, Full-Stack, Ethical AI." />
-    <meta property="og:image" content="https://baburambastola.dev/profile.jpg" />
-    <meta property="twitter:card" content="summary_large_image" />
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "itemListElement": [
-        "Python",
-        "TypeScript",
-        "Machine Learning",
-        "Ethical AI",
-        "React"
-      ]
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skills & Tech Stack | Baburam Bastola</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+    .skills-page-container {
+      padding: var(--space-xl) 2rem var(--space-lg);
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    </script>
-    <link rel="canonical" href="https://baburambastola.dev/skills" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css" />
+    .skills-header {
+      margin-bottom: var(--space-xl);
+      text-align: left;
+    }
+    .skills-meta {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent-primary);
+      margin-bottom: var(--space-xs);
+    }
+    .skills-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: var(--space-sm);
+    }
+    .skills-tagline {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+    }
+    .skills-layout-groups {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    .skill-group-block {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: var(--space-lg);
+      display: grid;
+      grid-template-columns: 0.3fr 0.7fr;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    .skill-block-info h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      margin-bottom: var(--space-xs);
+      color: var(--accent-primary);
+    }
+    .skill-block-info p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .skill-block-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .skill-block-chip {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      transition: all var(--transition-fast);
+    }
+    .skill-block-chip:hover {
+      border-color: var(--accent-primary);
+      background: rgba(107, 30, 43, 0.04);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(107, 30, 43, 0.08);
+    }
+    @media (max-width: 768px) {
+      .skill-group-block {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <header class="navbar">
-        <div class="container">
-            <a href="/" class="logo">BB.</a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="/about.html">About</a></li>
-                    <li><a href="/education.html">Education</a></li>
-                    <li><a href="/experience.html">Experience</a></li>
-                    <li><a href="/projects.html">Projects</a></li>
-                    <li><a href="/media.html">Media</a></li>
-                    <li><a href="/skills.html" class="active">Skills</a></li>
-                    <li><a href="/contact.html">Contact</a></li>
-                    <li><a href="/Baburam_Bastola_CV.pdf" download="Baburam_Bastola_CV.pdf" class="nav-btn-cv"
-                            target="_blank">Download CV</a></li>
-                </ul>
-                <button class="mobile-menu-btn" aria-label="Toggle Navigation">☰</button>
-            </nav>
-        </div>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="/" class="nav-logo" aria-label="Baburam Bastola Home">&lt;<span>BB</span>/&gt;</a>
+    <ul class="nav-links" role="navigation" aria-label="Main Navigation">
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/experience.html">Experience</a></li>
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/skills.html">Skills</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a href="/Baburam_Bastola_CV.pdf" download class="nav-cv">↓ Download CV</a>
+    <button class="nav-mobile-btn" aria-expanded="false" aria-label="Toggle menu">☰</button>
+  </nav>
+
+  <!-- SKILLS PAGE CONTENT -->
+  <main class="skills-page-container">
+    <header class="skills-header">
+      <div class="skills-meta">[ TECH_01 ]</div>
+      <h1 class="skills-title">Core Tech Stack</h1>
+      <p class="skills-tagline">
+        Categorized listing of libraries, development frameworks, and architectures I work with on a daily basis.
+      </p>
     </header>
 
-    <main>
-        <section id="skills">
-            <div class="container">
-                <h1>Technical Skills</h1>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Languages & Frameworks</h3>
-                        <ul class="skill-list">
-                            <li class="skill-badge">Python (Advanced)</li>
-                            <li class="skill-badge">TypeScript</li>
-                            <li class="skill-badge">JavaScript</li>
-                            <li class="skill-badge">Java</li>
-                            <li class="skill-badge">React</li>
-                            <li class="skill-badge">Node.js</li>
-                            <li class="skill-badge">Supabase</li>
-                            <li class="skill-badge">OpenAI API</li>
-                        </ul>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>AI & Machine Learning</h3>
-                        <ul class="skill-list">
-                            <li class="skill-badge">Scikit-learn</li>
-                            <li class="skill-badge">Predictive Modelling</li>
-                            <li class="skill-badge">Feature Engineering</li>
-                            <li class="skill-badge">Data Preprocessing</li>
-                            <li class="skill-badge">Model Evaluation</li>
-                            <li class="skill-badge">Ethical AI Principles</li>
-                        </ul>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Systems & Tools</h3>
-                        <ul class="skill-list">
-                            <li class="skill-badge">Linux</li>
-                            <li class="skill-badge">System Administration</li>
-                            <li class="skill-badge">Database Management</li>
-                            <li class="skill-badge">Git/GitHub</li>
-                            <li class="skill-badge">VS Code</li>
-                            <li class="skill-badge">Security Auditing</li>
-                        </ul>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Soft Skills</h3>
-                        <ul class="skill-list">
-                            <li class="skill-badge">Leadership</li>
-                            <li class="skill-badge">Public Speaking</li>
-                            <li class="skill-badge">Workshop Delivery</li>
-                            <li class="skill-badge">Cross-functional Collaboration</li>
-                            <li class="skill-badge">Strategic Planning</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; <span id="year"></span> Baburam Bastola. All rights reserved.</p>
+    <div class="skills-layout-groups">
+      <!-- Languages Group -->
+      <div class="skill-group-block">
+        <div class="skill-block-info">
+          <h2>Languages</h2>
+          <p>Writing clean, strongly-typed, and maintainable application codebases.</p>
         </div>
-    </footer>
-    <script type="module" src="/main.js"></script>
+        <div class="skill-block-chips">
+          <span class="skill-block-chip">Python</span>
+          <span class="skill-block-chip">TypeScript</span>
+          <span class="skill-block-chip">JavaScript (ES6+)</span>
+          <span class="skill-block-chip">HTML5 / CSS3</span>
+          <span class="skill-block-chip">SQL</span>
+        </div>
+      </div>
+
+      <!-- Frameworks Group -->
+      <div class="skill-group-block">
+        <div class="skill-block-info">
+          <h2>Frameworks</h2>
+          <p>Structuring responsive, client-side web platforms and REST API systems.</p>
+        </div>
+        <div class="skill-block-chips">
+          <span class="skill-block-chip">React</span>
+          <span class="skill-block-chip">Next.js</span>
+          <span class="skill-block-chip">Node.js</span>
+          <span class="skill-block-chip">Express.js</span>
+          <span class="skill-block-chip">Vite</span>
+        </div>
+      </div>
+
+      <!-- ML / AI Group -->
+      <div class="skill-group-block">
+        <div class="skill-block-info">
+          <h2>ML / AI</h2>
+          <p>Integrating neural pipelines, prompt design, and data pre-processing workflows.</p>
+        </div>
+        <div class="skill-block-chips">
+          <span class="skill-block-chip">Machine Learning</span>
+          <span class="skill-block-chip">Deep Learning</span>
+          <span class="skill-block-chip">OpenAI API</span>
+          <span class="skill-block-chip">LLM Fine-tuning</span>
+          <span class="skill-block-chip">Data Analytics</span>
+        </div>
+      </div>
+
+      <!-- Infra Group -->
+      <div class="skill-group-block">
+        <div class="skill-block-info">
+          <h2>Infra & Cloud</h2>
+          <p>Hosting, security configuration, storage, and automated deployment actions.</p>
+        </div>
+        <div class="skill-block-chips">
+          <span class="skill-block-chip">AWS (Certified Practitioner)</span>
+          <span class="skill-block-chip">Supabase</span>
+          <span class="skill-block-chip">Firebase</span>
+          <span class="skill-block-chip">Docker</span>
+          <span class="skill-block-chip">Git / GitHub</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      &lt;<span>BB</span>/&gt; Built by Baburam Bastola.
+    </div>
+    <div class="footer-links">
+      <a href="/about.html">About</a>
+      <a href="/experience.html">Experience</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/skills.html">Skills</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+    <div class="footer-right">
+      &copy; <span id="year">2026</span> All rights reserved.
+    </div>
+  </footer>
+
+  <script type="module" src="/main.js"></script>
 </body>
 
 </html>

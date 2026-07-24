@@ -1,100 +1,218 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me | Baburam Bastola</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <style>
+    .about-page-container {
+      padding: var(--space-xl) 2rem var(--space-lg);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .about-header {
+      margin-bottom: var(--space-xl);
+      text-align: left;
+    }
+    .about-meta {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent-primary);
+      margin-bottom: var(--space-xs);
+    }
+    .about-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: var(--space-sm);
+    }
+    .about-tagline {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+    }
+    .about-section-block {
+      margin-bottom: var(--space-xl);
+    }
+    
+    /* At a Glance Fact Strip Styling */
+    .fact-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+      margin: var(--space-lg) 0;
+    }
+    .fact-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: all var(--transition-fast);
+    }
+    .fact-card:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(107, 30, 43, 0.05);
+    }
+    .fact-icon {
+      font-size: 1.8rem;
+      color: var(--accent-primary);
+    }
+    .fact-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+    .fact-value {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .cv-action-section {
+      text-align: center;
+      margin-top: var(--space-lg);
+      padding: var(--space-lg) 0;
+      border-top: 1px solid var(--border-color);
+    }
 
-    <title>About Baburam Bastola | AI Student & Ethical AI Advocate</title>
-    <meta name="description"
-        content="Learn about Baburam Bastola, an AI and Software Engineering student in London with leadership experience, a passion for ethical AI, and hands-on machine learning and full-stack development expertise." />
-    <meta name="keywords"
-        content="AI student London, Artificial Intelligence student UK, Software Engineering student London, AI society founder university, Machine learning Python student, Ethical AI student leader, AI developer portfolio UK" />
-    <meta property="og:type" content="profile" />
-    <meta property="og:url" content="https://baburambastola.dev/about" />
-    <meta property="og:title" content="About Baburam Bastola | AI Student & Ethical AI Advocate" />
-    <meta property="og:description"
-        content="Learn about Baburam Bastola, an AI and Software Engineering student in London with leadership experience, a passion for ethical AI, and hands-on machine learning expertise." />
-    <meta property="og:image" content="https://baburambastola.dev/profile.jpg" />
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content="About Baburam Bastola | AI Student & Ethical AI Advocate" />
-    <meta property="twitter:description"
-        content="Learn about Baburam Bastola, an AI and Software Engineering student in London with leadership experience, a passion for ethical AI, and hands-on machine learning expertise." />
-    <meta property="twitter:image" content="https://baburambastola.dev/profile.jpg" />
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfilePage",
-      "mainEntity": {
-        "@type": "Person",
-        "name": "Baburam Bastola",
-        "alternateName": "Ashwin Bastola",
-        "jobTitle": "AI & Software Engineering Student",
-        "image": "https://baburambastola.dev/profile.jpg"
+    @media (max-width: 768px) {
+      .fact-strip {
+        grid-template-columns: 1fr;
       }
     }
-    </script>
-    <link rel="canonical" href="https://baburambastola.dev/about" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css" />
+  </style>
 </head>
 
 <body>
-    <header class="navbar">
-        <div class="container">
-            <a href="/" class="logo">BB.</a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="/about.html" class="active">About</a></li>
-                    <li><a href="/education.html">Education</a></li>
-                    <li><a href="/experience.html">Experience</a></li>
-                    <li><a href="/projects.html">Projects</a></li>
-                    <li><a href="/media.html">Media</a></li>
-                    <li><a href="/skills.html">Skills</a></li>
-                    <li><a href="/contact.html">Contact</a></li>
-                    <li><a href="/Baburam_Bastola_CV.pdf" download="Baburam_Bastola_CV.pdf" class="nav-btn-cv"
-                            target="_blank">Download CV</a></li>
-                </ul>
-                <button class="mobile-menu-btn" aria-label="Toggle Navigation">☰</button>
-            </nav>
-        </div>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="/" class="nav-logo" aria-label="Baburam Bastola Home">&lt;<span>BB</span>/&gt;</a>
+    <ul class="nav-links" role="navigation" aria-label="Main Navigation">
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/experience.html">Experience</a></li>
+      <li><a href="/projects.html">Projects</a></li>
+      <li><a href="/skills.html">Skills</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+    <a href="/Baburam_Bastola_CV.pdf" download class="nav-cv">↓ Download CV</a>
+    <button class="nav-mobile-btn" aria-expanded="false" aria-label="Toggle menu">☰</button>
+  </nav>
+
+  <!-- MAIN ABOUT PAGE CONTENT -->
+  <main class="about-page-container">
+    <header class="about-header">
+      <div class="about-meta">[ INTRO_01 ]</div>
+      <h1 class="about-title">About Baburam Bastola</h1>
+      <p class="about-tagline">
+        Computer Science student specializing in Artificial Intelligence and Software Engineering at the University of Roehampton.
+      </p>
     </header>
 
-    <main>
-        <section id="about">
-            <div class="container">
-                <h1>About Me</h1>
-                <div class="about-grid">
-                    <div class="about-text">
-                        <p>I am a <strong>Computer Science student (AI & Software Engineering)</strong> based in London,
-                            driven by a mission to define the cutting edge of technology responsibly.</p>
-                        <p>As the founder of the <strong>university AI society</strong>, I have led numerous
-                            initiatives, including delivering machine learning workshops and organizing collaborative
-                            projects using Python. My focus is not just on building systems, but on building communities
-                            that understand the power and responsibility of AI.</p>
-                        <p>I have built full-stack AI platforms mentioned in my projects, and I combine technical
-                            leadership in AI/ML with Software Engineering best practices to deliver scalable,
-                            production-ready solutions.</p>
-                    </div>
-                    <div class="about-visual">
-                        <img src="/profile.jpg" alt="Baburam Bastola AI and Software Engineering student London"
-                            style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; <span id="year"></span> Baburam Bastola. All rights reserved.</p>
+    <!-- BIOGRAPHY SECTION -->
+    <section class="about-section-block reveal" id="about-bio" style="padding: 0;">
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I am a Computer Science student at the University of Roehampton in London, specializing in AI & Software Engineering. I focus on developing full-stack architectures and machine learning systems that align technical robustness with ethical design frameworks.
+          </p>
+          <p>
+            My academic and community involvement centers on technology advocacy and education. As the Founding President of the university's <strong>AI and Computing Society</strong>, I establish structures to help students engage with advanced technical concepts in machine learning and software design.
+          </p>
+          <p>
+            As an <strong>AWS Certified Cloud Practitioner</strong>, I apply cloud systems engineering principles to ensure applications are scalable, secure, and resilient.
+          </p>
         </div>
-    </footer>
-    <script type="module" src="/main.js"></script>
+        <div class="code-block">
+          <div class="code-block-header">
+            <div class="dot r"></div>
+            <div class="dot y"></div>
+            <div class="dot g"></div>
+            <span class="code-filename">profile.json</span>
+          </div>
+          <div class="code-body">
+            <span class="code-kw">const</span> <span class="code-var">developer</span> = {<br>
+            &nbsp;&nbsp;name: <span class="code-str">"Baburam Bastola"</span>,<br>
+            &nbsp;&nbsp;education: <span class="code-str">"BSc Computer Science @ Roehampton"</span>,<br>
+            &nbsp;&nbsp;specialization: <span class="code-str">"AI & Software Engineering"</span>,<br>
+            &nbsp;&nbsp;leadership: <span class="code-str">"Founder, AI & Computing Society"</span>,<br>
+            &nbsp;&nbsp;credentials: [<span class="code-str">"AWS Certified Cloud Practitioner"</span>]<br>
+            };
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AT A GLANCE FACT STRIP -->
+    <section class="about-section-block reveal" style="padding: 0; margin-top: var(--space-lg);">
+      <div class="section-header" style="margin-bottom: var(--space-sm);">
+        <span class="section-num">[ SUMMARY_02 ]</span>
+        <h2 class="section-title">At a Glance</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="fact-strip">
+        <!-- Fact 1: Location -->
+        <div class="fact-card">
+          <div class="fact-icon">📍</div>
+          <span class="fact-label">Location</span>
+          <span class="fact-value">London, United Kingdom</span>
+        </div>
+
+        <!-- Fact 2: Focus Areas -->
+        <div class="fact-card">
+          <div class="fact-icon">💻</div>
+          <span class="fact-label">Focus Areas</span>
+          <span class="fact-value">AI, Software Systems & Cloud Architecture</span>
+        </div>
+
+        <!-- Fact 3: Certifications -->
+        <div class="fact-card">
+          <div class="fact-icon">📜</div>
+          <span class="fact-label">Certifications</span>
+          <span class="fact-value">AWS Cloud Practitioner</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD CV CTA SECTION -->
+    <section class="cv-action-section reveal" style="padding: var(--space-md) 0 0;">
+      <p style="color: var(--text-secondary); margin-bottom: var(--space-sm); font-size: 0.95rem;">
+        Interested in collaborating or viewing a formal document of my credentials?
+      </p>
+      <a href="/Baburam_Bastola_CV.pdf" download class="btn btn-primary">
+        ↓ Download Curriculum Vitae (PDF)
+      </a>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      &lt;<span>BB</span>/&gt; Built by Baburam Bastola.
+    </div>
+    <div class="footer-links">
+      <a href="/about.html">About</a>
+      <a href="/experience.html">Experience</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/skills.html">Skills</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+    <div class="footer-right">
+      &copy; <span id="year">2026</span> All rights reserved.
+    </div>
+  </footer>
+
+  <script type="module" src="/main.js"></script>
 </body>
 
 </html>
